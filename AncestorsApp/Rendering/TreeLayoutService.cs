@@ -4,6 +4,10 @@ namespace AncestorsApp.Rendering;
 
 public class TreeLayoutService
 {
+    private const double CanvasPadding = 56;
+    private const double MinimumCanvasWidth = 1040;
+    private const double MinimumCanvasHeight = 680;
+
     private readonly double _nodeWidth;
     private readonly double _nodeHeight;
     private readonly double _horizontalSpacing;
@@ -23,24 +27,24 @@ public class TreeLayoutService
         var leafIndex = 0;
         CalculateLayout(root, 0, ref leafIndex, positions);
 
-        var width = positions.Values.Select(p => p.X).DefaultIfEmpty().Max() + _nodeWidth + 100;
-        var height = positions.Values.Select(p => p.Y).DefaultIfEmpty().Max() + _nodeHeight + 100;
+        var width = positions.Values.Select(p => p.X).DefaultIfEmpty().Max() + _nodeWidth + CanvasPadding;
+        var height = positions.Values.Select(p => p.Y).DefaultIfEmpty().Max() + _nodeHeight + CanvasPadding;
 
         return new TreeLayoutResult
         {
             Positions = positions,
-            CanvasWidth = Math.Max(width, 1000),
-            CanvasHeight = Math.Max(height, 700)
+            CanvasWidth = Math.Max(width, MinimumCanvasWidth),
+            CanvasHeight = Math.Max(height, MinimumCanvasHeight)
         };
     }
 
     private double CalculateLayout(PersonNode node, int depth, ref int leafIndex, Dictionary<PersonNode, Point> positions)
     {
-        var y = 40 + depth * (_nodeHeight + _verticalSpacing);
+        var y = CanvasPadding + depth * (_nodeHeight + _verticalSpacing);
 
         if (node.Children.Count == 0)
         {
-            var x = 40 + leafIndex * (_nodeWidth + _horizontalSpacing);
+            var x = CanvasPadding + leafIndex * (_nodeWidth + _horizontalSpacing);
             leafIndex++;
             positions[node] = new Point(x, y);
             return x;

@@ -1,31 +1,44 @@
 # Ancestors
 
-Diese Repository enthält eine WPF-Anwendung zum Erstellen und Speichern eines Stammbaums.
+Ancestors ist eine WPF-Anwendung zum Erstellen, Bearbeiten und Speichern eines Stammbaums.
 
-## Enthaltene Funktionen
+## Funktionen
 
-- Ribbon-Menüleiste für Datei- und Bearbeitungsaktionen
-- Organigramm-ähnliche, grafische Darstellung des Stammbaums
-- Hinzufügen und Löschen von Personen (Kind/Geschwister)
-- Bearbeitung von Metadaten pro Person:
+- Moderne Hauptansicht mit Baumansicht, Detailbereich und Statusleiste
+- Grafische Stammbaum-Darstellung mit auswählbaren Personenkarten
+- Hinzufügen und Löschen von Personen:
+  - Kind hinzufügen
+  - Geschwister hinzufügen
+  - Person inklusive untergeordneter Personen löschen
+- Bearbeitung von Personendaten:
   - Vorname, Nachname
-  - Geburts- und Sterbedatum
+  - Geburts- und Sterbedatum im Format `TT.MM.JJJJ`
   - Geburtsort
   - Notizen
-- Speichern/Laden als JSON-Datei
+- Rückfrage bei ungespeicherten Änderungen
+- Speichern und Laden als JSON-Datei
 
-## Projekt
+## Projektstruktur
 
-- `AncestorsApp/AncestorsApp.csproj` (WPF, `net8.0-windows`)
-- `AncestorsApp/Services/`
-  - `FamilyTreeEditingService.cs`: Baumoperationen (Neu, hinzufügen, löschen)
-  - `FamilyTreePersistenceService.cs`: JSON Laden/Speichern
-- `AncestorsApp/Rendering/`
-  - `TreeLayoutService.cs`: Berechnung der Organigramm-Positionen
-  - `TreeRenderer.cs`: Zeichnen von Knoten und Verbindungen auf dem Canvas
+- `Ancestors.sln`: Visual-Studio-Solution
+- `AncestorsApp/AncestorsApp.csproj`: WPF-Projekt für `.NET 8`
+- `AncestorsApp/MainWindow.xaml`: Hauptoberfläche
+- `AncestorsApp/MainWindow.xaml.cs`: Bedienlogik der Oberfläche
+- `AncestorsApp/Services/FamilyTreeEditingService.cs`: Baumoperationen
+- `AncestorsApp/Services/FamilyTreePersistenceService.cs`: JSON Laden/Speichern
+- `AncestorsApp/Rendering/TreeLayoutService.cs`: Berechnung der Baumpositionen
+- `AncestorsApp/Rendering/TreeRenderer.cs`: Zeichnen von Personen und Verbindungen
 
-## Starten (auf Windows mit installiertem .NET SDK)
+## Starten
+
+Auf Windows mit installiertem .NET SDK:
 
 ```bash
 dotnet run --project AncestorsApp/AncestorsApp.csproj
+```
+
+Oder über die Solution:
+
+```bash
+dotnet build Ancestors.sln
 ```
