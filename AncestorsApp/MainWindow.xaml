@@ -4,7 +4,7 @@
         Title="Ancestors" Height="900" Width="1440"
         MinHeight="720" MinWidth="1080"
         WindowStartupLocation="CenterScreen"
-        Background="{StaticResource AppBackgroundBrush}"
+        Background="#F3F5F8"
         FontFamily="Segoe UI"
         UseLayoutRounding="True"
         SnapsToDevicePixels="True"
